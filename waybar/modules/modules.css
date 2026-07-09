@@ -1,0 +1,32 @@
+.modules-left,
+.modules-center,
+.modules-right {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+#custom-power,
+#custom-cpu_btop,
+#custom-gpu_temp,
+#memory,
+#power-profiles-daemon,
+#clock,
+#tray,
+#pulseaudio,
+#network {
+    background-color: alpha(@background, 0.75);
+    color: @foreground;
+    border-radius: 6px;
+    padding: 4px 10px;
+    margin: 0px 6px;
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 18px;
+}
+
+#custom-power {
+	margin-left: 0px;
+	padding-left: 6px;
+    	padding: 3px 10px;
+}

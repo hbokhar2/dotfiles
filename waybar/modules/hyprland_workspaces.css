@@ -1,0 +1,59 @@
+#workspaces {
+	background-color: alpha(@background, 0.75);
+	border-radius: 4px;
+	padding: 0px; 
+	margin: 0px 3px;
+}
+
+#workspaces button {
+	all: unset;
+	min-width: 40px; 
+	padding: 6px 0px; 
+	margin: 0px;
+	border-radius: 0px; 
+	background-color: alpha(@color9, .25);
+	color: alpha(@color9, .8);
+	transition: all .2s ease;
+}
+
+#workspaces button:first-child {
+	border-radius: 3px 0px 0px 3px;
+}
+
+#workspaces button:last-child {
+	border-radius: 0px 3px 3px 0px;
+}
+
+#workspaces button:hover {
+	background-color: alpha(@color9, .4);
+	color: @color9;
+	text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+	transition: all .2s ease;
+}
+
+#workspaces button.active {
+	background-color: @color9;
+	color: @color0;
+	text-shadow: none;
+	font-weight: normal;
+}
+
+#workspaces button.empty {
+	background-color: alpha(@color9, .06);
+	color: alpha(@color9, .3);
+	text-shadow: none;
+}
+
+#workspaces button.empty:hover {
+	background-color: alpha(@color9, .2);
+	color: alpha(@color9, .6);
+	text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
+	transition: all .2s ease;
+}
+
+#workspaces button.empty.active {
+	background-color: @color9;
+	color: @color0;
+	text-shadow: none;
+	font-weight: normal;
+}

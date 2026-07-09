@@ -1,0 +1,27 @@
+@import url('../../.cache/wal/colors-waybar.css');
+@import "modules/hyprland_workspaces.css";
+@import "modules/tray.css";
+@import "modules/network.css";
+@import "modules/modules.css";
+@import "modules/clock.css";
+
+* {
+    font-size:20px;
+    font-family: "JetBrainsMono Nerd Font";
+    background: transparent;
+}
+
+window#waybar{
+	background-color: transparent;
+	border-radius: 6;
+}
+
+tooltip {
+    background:@background;
+    color: @color7;
+}
+
+#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
+    transition: all .3s ease;
+    color:@color9;
+}
