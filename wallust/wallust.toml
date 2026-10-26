@@ -1,0 +1,10 @@
+backend = "fastresize"
+color_space = "salience"
+palette = "saliencedark"
+
+[templates]
+quickshell = { template = "quickshell.qml", target = "~/dotfiles/quickshell/Colors.qml" }
+kitty = { template = "kitty.conf", target = "~/dotfiles/kitty/colors.conf" }
+fuzzel = { template = "fuzzel.ini", target = "~/.config/fuzzel/colors.ini" }
+
+[hooks]

@@ -5,7 +5,8 @@ import Quickshell.Hyprland
 
 Scope {
 	id: root
-	property bool showMenu: false
+
+	property bool showPowerMenu: false
 
 	Variants {
 		model: Quickshell.screens
@@ -36,7 +37,7 @@ Scope {
 				id: rootRectangle
 				anchors.fill: parent
 				radius: 4
-				color: "#1e1e2e"
+				color: "#991e1e2e"
 
 				// Clock
 				Text {
@@ -63,18 +64,31 @@ Scope {
 
 					spacing: 8
 
-					Text {
-						anchors.verticalCenter: parent.verticalCenter
-						text: ""; color: "white"; font.pointSize: 14; font.bold: true
-						MouseArea { 
-							anchors.fill: parent; 
-							onClicked: root.showMenu = !root.showMenu 
+					Image {
+						id: powerIcon
+
+						anchors {
+							verticalCenter: leftRow.verticalCenter 
+							verticalCenterOffset: -1
+						}
+
+						source: "../icons/nixos.png"
+						sourceSize {
+							width: 22
+							height: 22
+						}
+
+						fillMode: Image.PreserveAspectFit
+
+						MouseArea {
+							anchors.fill: powerIcon
+							onClicked: root.showPowerMenu = !root.showPowerMenu
 						}
 					}
 
 					Item {
 						id: powerMenuContainer
-						width: root.showMenu ? powerMenuRow.implicitWidth : 0
+						width: root.showPowerMenu ? powerMenuRow.implicitWidth : 0
 						height: parent.height
 						clip: true
 						Behavior on width {
@@ -93,7 +107,7 @@ Scope {
 								font.pointSize: 8
 								MouseArea {
 									anchors.fill: parent
-									onClicked: { shutdownProc.running = true; root.showMenu = false }
+									onClicked: { shutdownProc.running = true; root.showPowerMenu = false }
 								}
 
 								Process { id: shutdownProc; command: ["systemctl", "poweroff"] }
@@ -106,7 +120,7 @@ Scope {
 								font.pointSize: 8
 								MouseArea {
 									anchors.fill: parent
-									onClicked: { rebootProc.running = true; root.showMenu = false }
+									onClicked: { rebootProc.running = true; root.showPowerMenu = false }
 								}
 
 								Process { id: rebootProc; command: ["systemctl", "reboot"] }
@@ -119,7 +133,7 @@ Scope {
 								font.pointSize: 8
 								MouseArea {
 									anchors.fill: parent
-									onClicked: { rebootProc.running = true; root.showMenu = false }
+									onClicked: { rebootProc.running = true; root.showPowerMenu = false }
 								}
 
 								Process { id: logoutProc; command: ["hyprctl", "dispatch", "exit"] }
@@ -127,7 +141,6 @@ Scope {
 						}
 					}
 
-					//You need to go over this again.
 					Rectangle {
 						id: workspaceRectangle
 
@@ -135,7 +148,7 @@ Scope {
 						color: "white"
 						height: leftRow.height - 3
 						y: 1.5
-						implicitWidth: workspaceRow.implicitWidth + 35
+						implicitWidth: hyprlandWorkspaceRow.implicitWidth + 35
 
 						readonly property var wsByMonitor: ({
 							"DP-4": [1, 2, 3],
@@ -145,7 +158,7 @@ Scope {
 						property var wsIds: wsByMonitor[window.screen.name] ?? [1, 2, 3]
 
 						Row {
-							id: workspaceRow
+							id: hyprlandWorkspaceRow
 							anchors.centerIn: workspaceRectangle
 							spacing: 12
 							Repeater {
@@ -182,8 +195,26 @@ Scope {
 					anchors {
 						right: parent.right
 						verticalCenter: parent.verticalCenter
+						rightMargin: 8
 					}
+					height: parent.height
 
+					spacing: 8
+
+					Text {
+						anchors.verticalCenter: parent.verticalCenter
+						text: "🖧"; color: "white"; font.pointSize: 18; font.bold: true
+
+						Process {
+							id: nmtuiProc
+							command: ["kitty", "-e", "nmtui"]
+						}
+
+						MouseArea {
+							anchors.fill: parent
+							onClicked: nmtuiProc.running = true
+						}
+					}
 				}
 			}
 		}

@@ -7,6 +7,7 @@ require("modules.animations")
 require("modules.mouse")
 require("modules.workspaces")
 require("modules.window-rules")
+require("modules.layerrules")
 
 
 -----------------------
